@@ -16,6 +16,7 @@ const Pug = db.define('pugs', {
 }, 
 {
   hooks: { 
+    // The keyword is save
     beforeSave: pug => { 
       const firstLetter = pug.name.slice(0,1).toUpperCase();
       const remainingLetters = pug.name.slice(1);
