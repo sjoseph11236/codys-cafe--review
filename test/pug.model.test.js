@@ -72,7 +72,7 @@ describe('Pug model', () => {
     })
   })
 
-  xdescribe('instance method: isPuppy', () => {
+  describe('instance method: isPuppy', () => {
     it('returns true if a pug is a puppy (less than one year old)', async () => {
       const pup = await Pug.create({name: 'Pupster', age: 0})
       const notPup = await Pug.create({name: 'Grouchy', age: 2})

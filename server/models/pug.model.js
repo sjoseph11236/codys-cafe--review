@@ -15,4 +15,9 @@ const Pug = db.define('pugs', {
   biography: Sequelize.TEXT
 });
 
+Pug.prototype.isPuppy = puppyInstance  => { 
+console.log("TCL: puppyInstance", puppyInstance);
+
+}
+
 module.exports = Pug;

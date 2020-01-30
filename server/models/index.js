@@ -4,6 +4,9 @@ const Coffee = require('./coffee.model')
 
 // VVV assign relations below VVV //
 
+// eac
+Pug.belongsTo(Coffee, {as: 'favoriteCoffee'});
+Pug.hasMany(Pug, {as: 'friends'});
 
 // ^^^ assign relations above ^^^ //
 
