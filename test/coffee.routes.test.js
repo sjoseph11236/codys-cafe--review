@@ -110,7 +110,7 @@ describe('Routes', () => {
       })
     })
 
-    xdescribe('POST /coffee', () => {
+    describe('POST /coffee', () => {
       it('creates a new coffee and sends back the new coffee', async () => {
         await agent
           .post('/api/coffee')

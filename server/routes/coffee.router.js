@@ -29,12 +29,31 @@ router.get('/ingredients/:ingredients', async (req, res, next ) => {
 
 router.get('/:coffeeId', async (req, res, next ) => {
   try {
-    const coffee = req.params.coffeeId;
-    console.log("TCL: coffee", coffee);
+    const coffeeId = req.params.coffeeId;
+    const coffee =  await Coffee.findById(coffeeId);
+    if(coffee) { 
+      res.status(200).send(coffee);
+    }
+    else { 
+      // Use send method to send 404
+      res.send(404);
+    }
   
   } catch (error) {
     console.log('This is the error ', error);
     next(error);
   }
 });
+
+router.post('/', async (req, res, next) => { 
+  try {
+    const coffee = req.body;
+    const createdCoffee = await Coffee.create(coffee);
+    res.status(201).send(createdCoffee);
+  } catch (error) {
+    console.log('This is the error ', error);
+    next(error);
+  }
+});
+
 module.exports = router

@@ -15,15 +15,17 @@ const Coffee = db.define('coffee', {
   hooks: { 
     // execute a check for the love and add ingredient if not include
     beforeValidate: coffeeInstance => { 
-      if(!coffeeInstance.ingredients.includes('love')) {
-        coffeeInstance.ingredients.push('love');
+      // Need to check if the instance has ingredients since it is allowNull true.
+      if(coffeeInstance.ingredients) {
+        if(!coffeeInstance.ingredients.includes('love')) {
+          coffeeInstance.ingredients.push('love');
+        }
       }
     }
   }
 });
 
 Coffee.findByIngredient = async function(coffee) {
-
   const Op = Sequelize.Op;
   
   const drinksWithCoffee = await Coffee.findAll({
