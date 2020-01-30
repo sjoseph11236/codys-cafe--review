@@ -27,15 +27,19 @@ const Pug = db.define('pugs', {
 });
 
 Pug.findByCoffee = async function(coffee) { 
+  // the eager loading and filter structure comes from theis doc: https://sequelize.org/master/manual/eager-loading.html
   const pugswithfavCoffee = await Pug.findAll({
     include: { 
+      // Inner join the table 
       model:  Coffee, 
+      // foreign key
       as: 'favoriteCoffee', 
       where:{ 
         name: coffee
       }
     }
   })
+  console.log("TCL: pugswithfavCoffee", pugswithfavCoffee)
 
   return pugswithfavCoffee;
 }
