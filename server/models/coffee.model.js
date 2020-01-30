@@ -9,7 +9,9 @@ const Coffee = db.define('coffee', {
   },
   // Need to be an array WITH strings
   ingredients:  Sequelize.ARRAY(Sequelize.STRING)
-}, {
+}, 
+// The second argument in  the define method is for add hooks 
+{
   hooks: { 
     // execute a check for the love and add ingredient if not include
     beforeValidate: coffeeInstance => { 
