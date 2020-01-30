@@ -9,6 +9,15 @@ const Coffee = db.define('coffee', {
   },
   // Need to be an array WITH strings
   ingredients:  Sequelize.ARRAY(Sequelize.STRING)
+}, {
+  hooks: { 
+    // execute a check for the love and add ingredient if not include
+    beforeValidate: coffeeInstance => { 
+      if(!coffeeInstance.ingredients.includes('love')) {
+        coffeeInstance.ingredients.push('love');
+      }
+    }
+  }
 });
 
 Coffee.findByIngredient = async function(coffee) {
