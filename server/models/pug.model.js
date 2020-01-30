@@ -15,9 +15,28 @@ const Pug = db.define('pugs', {
   biography: Sequelize.TEXT
 });
 
-Pug.prototype.isPuppy = puppyInstance  => { 
-console.log("TCL: puppyInstance", puppyInstance);
 
-}
+// Arrow functions don't bind its own this context
+Pug.prototype.isPuppy = function() { 
+  return this.age < 1;
+};
+
+Pug.prototype.shortBio = function() {
+  let firstPunctuationIdx;
+
+  // Iterate through the bio
+  for(let i =  0; i < this.biography.length; i++) {
+    // Check for the first punctuation
+    let char = this.biography[i];
+    if(char === "." || char === "?" || char === "!") {
+      // set the index of the first punctuation
+      firstPunctuationIdx = i;
+      break;
+    }
+  }
+
+  return this.biography.slice(0, firstPunctuationIdx);
+};
+
 
 module.exports = Pug;

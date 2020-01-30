@@ -82,7 +82,7 @@ describe('Pug model', () => {
     })
   })
 
-  xdescribe('instance method: shortBio', () => {
+  describe('instance method: shortBio', () => {
     // Note: the first sentence might be defined as all of the text
     // leading up to but not including the first period,
     // question mark, or exclamation point.
