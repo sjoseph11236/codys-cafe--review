@@ -13,8 +13,31 @@ const Pug = db.define('pugs', {
     defaultValue: 0
   }, 
   biography: Sequelize.TEXT
+}, 
+{
+  hooks: { 
+    beforeSave: pug => { 
+      const firstLetter = pug.name.slice(0,1).toUpperCase();
+      const remainingLetters = pug.name.slice(1);
+      const updatedName = firstLetter + remainingLetters;
+      pug.name = updatedName;
+    }
+  }
 });
 
+Pug.findByCoffee = async function(coffee) { 
+  const pugswithfavCoffee = await Pug.findAll({
+    include: { 
+      model:  Coffee, 
+      as: 'favoriteCoffee', 
+      where:{ 
+        name: coffee
+      }
+    }
+  })
+
+  return pugswithfavCoffee;
+}
 
 // Arrow functions don't bind its own this context
 Pug.prototype.isPuppy = function() { 
