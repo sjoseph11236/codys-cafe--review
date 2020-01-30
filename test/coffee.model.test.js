@@ -3,10 +3,10 @@
 const {expect} = require('chai')
 const {db, Coffee} = require('../server/models')
 
-xdescribe('Coffee model', () => {
+describe('Coffee model', () => {
   beforeEach(() => db.sync({force: true}))
 
-  xdescribe('column definitions and validations', () => {
+  describe('column definitions and validations', () => {
     it('has a `name` and `ingredients`', async () => {
       const puppaccino = await Coffee.create({
         name: 'Puppaccino',
